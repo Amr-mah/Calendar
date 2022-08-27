@@ -2,6 +2,7 @@
 #define CALENDAR_CALENDAR_H
 
 #include "Date.h"
+#include "Event.h"
 #include <string>
 #include <iostream>
 using namespace std;
@@ -17,6 +18,9 @@ public:
     void nextYear();
     void previousYear();
     void findDate();
+    void createEvent();
+    void deleteEvent();
+    void viewEvents();
 
 private:
     Date currDate;

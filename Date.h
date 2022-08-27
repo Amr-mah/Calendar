@@ -2,6 +2,10 @@
 #define CALENDAR_DATE_H
 
 #include <ctime>
+#include <string>
+#include <iostream>
+#include <sstream>
+using namespace std;
 
 class Date {
 public:
@@ -14,6 +18,7 @@ public:
     void incrementYear();
     void decrementYear();
     void setDate(int a, int b, int c);
+    string toString() const;
 
 private:
     int year;

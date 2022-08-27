@@ -11,8 +11,11 @@ void Calendar::menu() {
         cout << "\nN - Next Month" << endl;
         cout << "P - Previous Month" << endl;
         cout << "M - Next Year" << endl;
-        cout << "C - Previous Year" << endl;
-        cout << "G - Go to Date " << endl;
+        cout << "Y - Previous Year" << endl;
+        cout << "G - Go to Date" << endl;
+        cout << "C - Create an event" << endl;
+        cout << "D - Delete an event" << endl;
+        cout << "V - View all events" << endl;
         cout << "Q - Quit" << endl;
         cout << "Enter Selection:";
         cin >> selection;
@@ -29,12 +32,24 @@ void Calendar::menu() {
                 nextYear();
                 create();
                 break;
-            case 'C':
+            case 'Y':
                 previousYear();
                 create();
                 break;
             case 'G':
                 findDate();
+                create();
+                break;
+            case 'C':
+                createEvent();
+                create();
+                break;
+            case 'D':
+                deleteEvent();
+                create();
+                break;
+            case 'V':
+                viewEvents();
                 create();
                 break;
             case 'Q':
@@ -121,4 +136,61 @@ void Calendar::findDate() {
     cin >> day;
 
     currDate.setDate(year,month,day);
+}
+
+void Calendar::createEvent() {
+    Event event;
+    int year, month, day;
+    string description;
+
+    cout << "Enter Year:";
+    cin >> year;
+    cout << "Enter Month:";
+    cin >> month;
+    cout << "Enter Day:";
+    cin >> day;
+
+    Date d;
+    d.setDate(year,month,day);
+    event.setEventDate(d);
+
+    cout << "Enter event description:";
+    getline(cin >> ws, description);
+    event.setEventDescription(description);
+    event.printEvent();
+
+}
+
+void Calendar::deleteEvent() {
+    Event event;
+    string description;
+    int year,month,day;
+    cout << "Event to remove:" << endl;
+    cout << "Enter year:";
+    cin >> year;
+    cout << "Enter month:";
+    cin >> month;
+    cout << "Enter day:";
+    cin >> day;
+
+    Date d;
+    d.setDate(year,month,day);
+    event.setEventDate(d);
+
+    cout << "Enter event description:";
+    getline(cin >> ws, description);
+    event.setEventDescription(description);
+    event.removeEvent();
+
+}
+
+void Calendar::viewEvents() {
+    cout << "Event Details:\n\n";
+    ifstream file;
+    file.open("Events.txt", fstream::app);
+    char text;
+    while (file) {
+        text = file.get();
+        cout << text;
+    }
 }

@@ -52,3 +52,9 @@ void Date::setDate(int a, int b, int c) {
     day = c;
 }
 
+string Date::toString() const{
+    stringstream ss;
+    ss << month << "/" << day << "/" << year;
+    string str = ss.str();
+    return str;
+}
